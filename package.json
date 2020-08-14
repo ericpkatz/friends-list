@@ -1,0 +1,26 @@
+{
+  "name": "friends-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:server": "nodemon server.js --ignore dist/ --ignore src/",
+    "build": "webpack",
+    "build:dev": "npm run build -- --watch --mode development",
+    "start:dev": "npm run start:server & npm run build:dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.3.0",
+    "sequelize": "^6.3.4"
+  },
+  "devDependencies": {
+    "axios": "^0.19.2",
+    "nodemon": "^2.0.4",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}

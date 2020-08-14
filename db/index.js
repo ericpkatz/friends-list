@@ -4,7 +4,12 @@ const conn = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/acm
 
 const Friend = conn.define('friend', {
   name: {
-    type: STRING
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+    unique: true
   },
   rating: {
     type: INTEGER,

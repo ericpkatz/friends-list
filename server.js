@@ -30,6 +30,30 @@ app.put('/api/friends/:id', async (req, res, next)=> {
   }
 });
 
+app.delete('/api/friends/:id', async (req, res, next)=> {
+  try {
+    const friend = await Friend.findByPk(req.params.id);
+    await friend.destroy();
+    res.sendStatus(204);
+  }
+  catch(ex){
+    next(ex);
+  }
+});
+
+app.post('/api/friends', async (req, res, next)=> {
+  try {
+    res.send(await Friend.create(req.body));
+  }
+  catch(ex){
+    next(ex);
+  }
+});
+
+app.use((err, req, res, next)=> {
+  res.status(500).send({ error: err.message });
+});
+
 const init = async()=> {
   try {
     await db.syncAndSeed();
@@ -40,9 +64,6 @@ const init = async()=> {
     console.log(ex);
   }
 };
-
-
-
 
 init();
 
